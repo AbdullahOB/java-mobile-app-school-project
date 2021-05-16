@@ -1,46 +1,54 @@
 package com.example.mobil_projesi;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginPage extends AppCompatActivity {
 
-    Connection connect;
+    EditText username, password;
+    Button signInBtn;
+    DatabaseHelper _db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
-    }
-    public void loginBtnClicked(View view){
-        @SuppressLint("WrongViewCast") TextInputEditText usernameUser =  findViewById(R.id.usernameInLoginXML);
-        @SuppressLint("WrongViewCast") TextInputEditText passwordUser =  findViewById(R.id.passwordInLoginXML);
+        username = (EditText) findViewById(R.id.usernameInLoginXML);
+        password = (EditText) findViewById(R.id.passwordInLoginXML);
+        signInBtn = (Button) findViewById(R.id.btnSignin);
+        _db = new DatabaseHelper(this);
 
-        try {
-            ConnectionHelper connHelp = new ConnectionHelper();
-            connect = ConnectionHelper.connectionClass();
-            if(connect != null){
-                String query = "Select * from KullaniciTable";
-                Statement st =  connect.createStatement();
-                ResultSet rs = st.executeQuery(query);
+        signInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                String usernameFromUser = username.getText().toString();
+                String passwordFromUser = password.getText().toString();
+
+                boolean check = _db.checkUsernamePassword(usernameFromUser, passwordFromUser);
+                if ( passwordFromUser.equals("") || usernameFromUser.equals("")) {
+                    Toast.makeText(LoginPage.this, "Please Fill All Fields" , Toast.LENGTH_LONG).show();
+                }
+                else{
+
+                    if(check == true){
+                        Toast.makeText(LoginPage.this, "Login Success" , Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(LoginPage.this, "Login Failed" , Toast.LENGTH_LONG).show();
+                    }
+                }
+
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        });
 
     }
+
 
 
 }
