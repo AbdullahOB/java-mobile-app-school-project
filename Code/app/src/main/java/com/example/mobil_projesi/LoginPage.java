@@ -1,9 +1,12 @@
 package com.example.mobil_projesi;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginPage extends AppCompatActivity {
 
     EditText username, password;
+    RadioGroup radioGroup;
+    RadioButton radioBtn;
     Button signInBtn;
     DatabaseHelper _db;
 
@@ -22,6 +27,7 @@ public class LoginPage extends AppCompatActivity {
         username = (EditText) findViewById(R.id.usernameInLoginXML);
         password = (EditText) findViewById(R.id.passwordInLoginXML);
         signInBtn = (Button) findViewById(R.id.btnSignin);
+        radioGroup = (RadioGroup) findViewById(R.id.rdGroupSignInXML);
         _db = new DatabaseHelper(this);
 
         signInBtn.setOnClickListener(new View.OnClickListener() {
@@ -29,6 +35,9 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View view){
                 String usernameFromUser = username.getText().toString();
                 String passwordFromUser = password.getText().toString();
+                int radioId = radioGroup.getCheckedRadioButtonId();
+                radioBtn = findViewById(radioId);
+                String role = radioBtn.getText().toString();
 
                 boolean check = _db.checkUsernamePassword(usernameFromUser, passwordFromUser);
                 if ( passwordFromUser.equals("") || usernameFromUser.equals("")) {
@@ -37,10 +46,13 @@ public class LoginPage extends AppCompatActivity {
                 else{
 
                     if(check == true){
-                        Toast.makeText(LoginPage.this, "Login Success" , Toast.LENGTH_LONG).show();
+                            String userType = _db.getUserType(usernameFromUser);
+                            Toast.makeText(LoginPage.this, "Login Success Your Role Is : "+userType , Toast.LENGTH_LONG).show();
+
+
                     }
                     else{
-                        Toast.makeText(LoginPage.this, "Login Failed" , Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginPage.this, "Login Failed Please Check your role, username and password" , Toast.LENGTH_LONG).show();
                     }
                 }
 

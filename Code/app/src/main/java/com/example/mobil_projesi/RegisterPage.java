@@ -29,12 +29,8 @@ public class RegisterPage extends AppCompatActivity {
         RePassword = (EditText) findViewById(R.id.retypePassword);
         Username = (EditText) findViewById(R.id.usernameInSignUpXML);
         radioGroup = (RadioGroup) findViewById(R.id.rdGroupSignupXML);
-
         SignupBtn = (Button) findViewById(R.id.SignUpBtn);
-
         _db = new DatabaseHelper(this);
-
-
         SignupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,12 +47,22 @@ public class RegisterPage extends AppCompatActivity {
                     if(checkUsernameExist == true){
                         Toast.makeText(RegisterPage.this , "The Username Already Exists" , Toast.LENGTH_LONG).show();
                     }
+
                     else{
                         _db.addUser(Credentials[0] , Credentials[1] ,Credentials[2] ,Credentials[5],Credentials[3],Credentials[4],Credentials[7], 0);
+
+                        if (Credentials[7].equals("Buyer")){
+                            _db.AddUserRole(3 );
+                        }
+                        else if(Credentials[7].equals("Seller")){
+
+                            _db.AddUserRole(2 );
+                        }
+
                         Toast.makeText(RegisterPage.this, "Register Success" ,Toast.LENGTH_LONG).show();
                     }
                  }
-          }
+            }
         });
 
     }
