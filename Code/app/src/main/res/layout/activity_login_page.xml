@@ -69,32 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.558" />
 
-    <RadioGroup
-        android:id="@+id/rdGroupSignInXML"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btnSignin"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/radioButtonBuyer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Buyer"
-            tools:layout_editor_absoluteX="105dp"
-            tools:layout_editor_absoluteY="507dp" />
 
-        <RadioButton
-            android:id="@+id/radioButtonSeller"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Seller"
-            tools:layout_editor_absoluteX="201dp"
-            tools:layout_editor_absoluteY="507dp" />
-
-    </RadioGroup>
 
 
 

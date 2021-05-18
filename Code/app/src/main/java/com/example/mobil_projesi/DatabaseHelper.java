@@ -25,8 +25,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String USER_ROLE_TABLE = "UserRoles";
     public static final String COLUMN_USERID = "UserId";
     public static final String COLUMN_ROLEID = "RoleId";
-
-
+    /*-----------------------------------------------------Buyer Request Balance----------------------------------------*/
+    public static final String BUYER_REQUEST_TABLE = "BuyerRequestBalance";
+    /*-----------------------------------------------------StatueId----------------------------------------------------*/
+    public static final String BUYER_REQUEST_StatueId = "BuyerRequestBalance";
+    Long newBuyerReqId;
+    /*---------------------------------------------------------------------------------------------------------------*/
+    public static final String SELLER_REQUEST_TABLE = "SellerRequest";
+    /*---------------------------------------------------------------------------------------------------------------*/
 
     public static final int DB_VERSION = 2;
 
@@ -43,6 +49,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
       db.execSQL(query2);
       String query3 = "create table "+USER_ROLE_TABLE+" (RoleId INTEGER , UserId INTEGER, FOREIGN KEY(UserId) REFERENCES Users(id),FOREIGN KEY(RoleId) REFERENCES Role(ID))";
       db.execSQL(query3);
+      String query4 = "create table "+BUYER_REQUEST_StatueId+" (Id INTEGER PRIMARY KEY AUTOINCREMENT, Name VARCHAR)";
+        db.execSQL(query4);
+      String query5 = "create table "+BUYER_REQUEST_TABLE+" (Id INTEGER ,UserId INTEGER , MsgFromAdmin VARCHAR, StatueId INTEGER, RequestedBalance FLOAT," +
+              " FOREIGN KEY(UserId) REFERENCES Users(id), FOREIGN KEY(StatueId) REFERENCES BuyerRequestBalance(Id))";
+        db.execSQL(query5);
 
 
     }
@@ -51,8 +62,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
         String query2 = "DROP TABLE IF EXISTS " + USER_ROLE_TABLE;
+        String query3 = "DROP TABLE IF EXISTS " + BUYER_REQUEST_TABLE;
         db.execSQL(query);
         db.execSQL(query2);
+        db.execSQL(query3);
         onCreate(db);
     }
 
@@ -95,7 +108,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-
     public String getUserType (String userName){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor CR = db.rawQuery("select UserRole from "+TABLE_NAME+" where "+COLUMN_USER_NAME+" = ?", new String[] {userName});
@@ -116,6 +128,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         else{
             return false;
+        }
+    }
+    public boolean AddBuyerRequest(float Balance , int userId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("RequestedBalance", Balance);
+        values.put("StatueId" , 3);
+        values.put("UserId", userId);
+        newBuyerReqId = db.insert(BUYER_REQUEST_TABLE , null, values);
+        if(newBuyerReqId == -1){
+            return false;
+        }
+        else{
+            return true;
         }
     }
 }
