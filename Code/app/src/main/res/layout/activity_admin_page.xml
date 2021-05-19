@@ -48,8 +48,20 @@
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:width="250dp"
-        android:text="Market Logs"
+        android:text="Waiting Approve"
         android:fontFamily="monospace"
         android:textSize="20dp"
+        ></Button>
+    <Button
+        android:id="@+id/BuyerBalanceWaitApprove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/waitToApproveBtn"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:width="250dp"
+        android:text="Buyer Waiting Approve"
+        android:fontFamily="monospace"
+        android:textSize="15dp"
         ></Button>
 </RelativeLayout>

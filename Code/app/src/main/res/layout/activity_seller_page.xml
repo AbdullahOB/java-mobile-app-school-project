@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".SellerPage">
 
+
+
     <TextView
         android:id="@+id/HelloSellerTxt"
         android:layout_width="60dp"
@@ -33,83 +35,76 @@
         android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/containerborder">
-        <TextView
-            android:id="@+id/walletBalanceTxtViewSeller"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:gravity="center_vertical"
-            android:layout_centerVertical="true"
-            android:text="Wallet Balance"
-            android:textSize="20dp"
-            ></TextView>
-        <TextView
-            android:id="@+id/balanceSeller"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/walletBalanceTxtViewSeller"
-            android:gravity="center_vertical"
-            android:layout_centerVertical="true"
-            android:text="0"
-            android:textSize="20dp"
-            ></TextView>
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_toRightOf="@+id/balanceSeller"
-            android:gravity="center_vertical"
-            android:layout_centerVertical="true"
-            android:text="TL"
-            android:textSize="20dp"
-            ></TextView>
+
+        <FrameLayout
+            android:id="@+id/FrameMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </FrameLayout>
+        
     </RelativeLayout>
+
+
+
     <Button
         android:id="@+id/AddProductsSeller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:width="250dp"
         android:layout_below="@+id/containerSeller"
-        android:text="Add Products"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:width="250dp"
         android:fontFamily="monospace"
-        android:textSize="20dp"
-        android:layout_marginTop="40dp"
-        ></Button>
+        android:text="Add Products"
+        android:textSize="20dp"></Button>
+
     <Button
         android:id="@+id/ListProductsSeller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:width="250dp"
         android:layout_below="@+id/AddProductsSeller"
-        android:text="List The Products"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:width="250dp"
         android:fontFamily="monospace"
-        android:textSize="18dp"
-        android:layout_marginTop="40dp"
-        ></Button>
+        android:text="List The Products"
+        android:textSize="18dp"></Button>
+
     <Button
         android:id="@+id/ProductApproveSeller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:width="250dp"
         android:layout_below="@+id/ListProductsSeller"
-        android:text="Wait For Approve"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:width="250dp"
         android:fontFamily="monospace"
-        android:textSize="18dp"
-        android:layout_marginTop="40dp"
-        ></Button>
+        android:text="Wait For Approve"
+        android:textSize="18dp"></Button>
+
     <Button
         android:id="@+id/GetLogsSeller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:width="250dp"
         android:layout_below="@+id/ProductApproveSeller"
-        android:text="Get Logs"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:width="250dp"
         android:fontFamily="monospace"
-        android:textSize="20dp"
-        android:layout_marginTop="40dp"
-        ></Button>
+        android:text="Get Logs"
+        android:textSize="20dp"></Button>
+    <Button
+        android:id="@+id/getMapBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/GetLogsSeller"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:width="250dp"
+        android:fontFamily="monospace"
+        android:text="Get Maps View"
+        android:textSize="20dp"></Button>
+
+
+
 </RelativeLayout>

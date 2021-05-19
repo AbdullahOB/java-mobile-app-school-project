@@ -42,23 +42,30 @@ public class LoginPage extends AppCompatActivity {
 
                 }
                 else{
+
+
+
                     if(check == true){
                             String userType = _db.getUserType(usernameFromUser);
+                            int uID = _db.getUserId(usernameFromUser);
                             if(userType.equals("Buyer")){
                                 Toast.makeText(LoginPage.this, "Login Success Your Role Is : "+userType , Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(LoginPage.this, BuyerPage.class);
                                 intent.putExtra("Name" , usernameFromUser);
+                                intent.putExtra("Uid", uID);
                                 LoginPage.this.startActivity(intent);
                             }
                             else if(userType.equals("Seller")){
                                 Toast.makeText(LoginPage.this, "Login Success Your Role Is : "+userType , Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(LoginPage.this, SellerPage.class);
                                 intent.putExtra("Name" , usernameFromUser);
+                                intent.putExtra("Uid", uID);
                                 LoginPage.this.startActivity(intent);
                             }
                             else if(userType.equals("Admin")){
                                 Toast.makeText(LoginPage.this, "Login Success Your Role Is : "+userType , Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(LoginPage.this, AdminPage.class);
+                                intent.putExtra("Uid", uID);
                                 LoginPage.this.startActivity(intent);
                             }
 
